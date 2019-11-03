@@ -1,68 +1,65 @@
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
-  Text,
   Button,
+  FlatList,
+  TextInput,
   StatusBar,
+  StyleSheet,
+  SafeAreaView,
 } from 'react-native';
-
 import {
-  Header,
-  LearnMoreLinks,
   Colors,
-  DebugInstructions,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
 
 const App = () => {
-  const [ outputText, setOutputText ] = useState('Funcionou, Yay!');
+  const [courseGoals, setCourseGoals] = useState([]);
+
   return (
-    <>
+    <View style={styles.body}>
       <StatusBar barStyle="light-content" />
       <SafeAreaView>
-        <ScrollView
+        <GoalInput
+          courseGoals={courseGoals}
+          onPress={(value) => {
+            setCourseGoals([
+              ...courseGoals, {
+                key: Math.random().toString(),
+                value,
+              }
+            ]);
+          }}
+        />
+        <FlatList
+          data={courseGoals}
+          style={styles.flatList}
+          keyExtractor={(item, index) => item.key}
+          renderItem={({ item: { key, value } }) => 
+            <GoalItem
+              title={`${value} (${key})`}
+              onPress={() => (
+                setCourseGoals(courseGoals.filter(goal => (
+                  key !== goal.key
+                )))
+              )}
+            />
+          }
           contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>{outputText}</Text>
-              <Button
-                title="Teste"
-                onPress={() => 
-                  setOutputText(`Click teste!`)
-                }
-              />
-            </View>
-          </View>
-        </ScrollView>
+        />
       </SafeAreaView>
-    </>
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  scrollView: {
+  body: {
+    flex: 1,
     backgroundColor: Colors.lighter,
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
+  flatList: {
+    padding: 15,
   },
 });
 
