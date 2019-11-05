@@ -1,53 +1,22 @@
 import React, { useState } from 'react';
 import {
   View,
-  Button,
-  FlatList,
-  TextInput,
   StatusBar,
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
-import GoalItem from './components/GoalItem';
-import GoalInput from './components/GoalInput';
+import Header from './components/Header';
+import StartGameScreen from './screens/StartGameScreen';
+import Colors from './constants/Colors';
 
 const App = () => {
   const [courseGoals, setCourseGoals] = useState([]);
-
   return (
     <View style={styles.body}>
       <StatusBar barStyle="light-content" />
-      <SafeAreaView>
-        <GoalInput
-          courseGoals={courseGoals}
-          onPress={(value) => {
-            setCourseGoals([
-              ...courseGoals, {
-                key: Math.random().toString(),
-                value,
-              }
-            ]);
-          }}
-        />
-        <FlatList
-          data={courseGoals}
-          style={styles.flatList}
-          keyExtractor={(item, index) => item.key}
-          renderItem={({ item: { key, value } }) => 
-            <GoalItem
-              title={`${value} (${key})`}
-              onPress={() => (
-                setCourseGoals(courseGoals.filter(goal => (
-                  key !== goal.key
-                )))
-              )}
-            />
-          }
-          contentInsetAdjustmentBehavior="automatic"
-        />
+      <SafeAreaView style={styles.safe}>
+        <Header title="Guess a Number" />
+        <StartGameScreen />
       </SafeAreaView>
     </View>
   );
@@ -56,11 +25,12 @@ const App = () => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: Colors.lighter,
+    backgroundColor: Colors.primary,
   },
-  flatList: {
-    padding: 15,
-  },
+  safe: {
+    flex: 1,
+    backgroundColor: Colors.appBack,
+  }
 });
 
 export default App;
