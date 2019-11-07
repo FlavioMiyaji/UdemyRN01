@@ -1,10 +1,10 @@
 import React from 'react';
 import {
     View,
-    Text,
     TouchableOpacity,
     StyleSheet,
 } from 'react-native';
+import BodyText from './BodyText';
 
 const GoalItem = props => {
     return (
@@ -12,9 +12,9 @@ const GoalItem = props => {
             onPress={props.onPress}
         >
             <View style={styles.listItem}>
-                <Text>
+                <BodyText>
                     {props.title}
-                </Text>
+                </BodyText>
             </View>
         </TouchableOpacity>
     );
