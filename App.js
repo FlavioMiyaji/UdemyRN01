@@ -5,30 +5,30 @@ import {
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
-import Header from './components/Header';
-import StartGameScreen from './screens/StartGameScreen';
-import Colors from './constants/Colors';
-import GameScreen from './screens/GameScreen';
-import GameOver from './screens/GameOver';
+import Header from './src/components/Header';
+import StartGameScreen from './src/screens/StartGameScreen';
+import Colors from './src/constants/Colors';
+import GameScreen from './src/screens/GameScreen';
+import GameOver from './src/screens/GameOver';
 
 const App = () => {
   const [] = useState();
 
   const [userNumber, setUserNumber] = useState();
-  const [rounds, setRounds] = useState(0);
+  const [pastGuess, setPastGuess] = useState(0);
 
   const startGameHandler = (selectecNumber) => {
     setUserNumber(selectecNumber);
-    setRounds(0);
+    setPastGuess([]);
   };
 
-  const gameOverHandler = (rounds) => {
-    setRounds(rounds);
+  const gameOverHandler = (pastGuess) => {
+    setPastGuess(pastGuess);
   };
 
   const restartHandler = () => {
     setUserNumber(0)
-    setRounds(0);
+    setPastGuess([]);
   };
 
   let content = (
@@ -36,12 +36,12 @@ const App = () => {
       onStartGame={startGameHandler}
     />
   );
-  if (rounds) {
+  if (pastGuess && pastGuess.length) {
     content = (
       <GameOver
         onRestart={restartHandler}
         userChoice={userNumber}
-        rounds={rounds}
+        pastGuess={pastGuess}
       />
     );
   } else if (userNumber) {

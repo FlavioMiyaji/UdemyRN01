@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import {
     View,
-    Text,
     Alert,
-    Button,
     Keyboard,
     StyleSheet,
     ScrollView,
@@ -15,6 +13,7 @@ import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
+import MyButton from '../components/MyButton';
 
 const StartGameScreen = props => {
     const [enteredValue, setEnteredValue] = useState('');
@@ -29,7 +28,8 @@ const StartGameScreen = props => {
                 <NumberContainer>
                     {selectedNumber}
                 </NumberContainer>
-                <Button
+                <MyButton
+                    primary
                     title="Start Game"
                     onPress={() => (
                         props.onStartGame(selectedNumber)
@@ -66,38 +66,34 @@ const StartGameScreen = props => {
                             )}
                         />
                         <View style={styles.buttonContainer}>
-                            <View style={styles.button}>
-                                <Button
-                                    color={Colors.second}
-                                    title="Reset"
-                                    onPress={resetInputHandler}
-                                />
-                            </View>
-                            <View style={styles.button}>
-                                <Button
-                                    color={Colors.primary}
-                                    title="Confirm"
-                                    onPress={() => {
-                                        const chosenNumber = parseInt(enteredValue);
-                                        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 999) {
-                                            Alert.alert(
-                                                'Invalid value!',
-                                                'Number has to be a number between 1 and 999.',
-                                                [{
-                                                    text: 'Okay',
-                                                    style: 'destructive',
-                                                    onPress: resetInputHandler,
-                                                }],
-                                            );
-                                            return;
-                                        }
-                                        setConfirmed(true);
-                                        setEnteredValue('');
-                                        setSelectedNumber(chosenNumber);
-                                        Keyboard.dismiss();
-                                    }}
-                                />
-                            </View>
+                            <MyButton
+                                color={Colors.second}
+                                title="Reset"
+                                onPress={resetInputHandler}
+                            />
+                            <MyButton
+                                primary
+                                title="Confirm"
+                                onPress={() => {
+                                    const chosenNumber = parseInt(enteredValue);
+                                    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 999) {
+                                        Alert.alert(
+                                            'Invalid value!',
+                                            'Number has to be a number between 1 and 999.',
+                                            [{
+                                                text: 'Okay',
+                                                style: 'destructive',
+                                                onPress: resetInputHandler,
+                                            }],
+                                        );
+                                        return;
+                                    }
+                                    setConfirmed(true);
+                                    setEnteredValue('');
+                                    setSelectedNumber(chosenNumber);
+                                    Keyboard.dismiss();
+                                }}
+                            />
                         </View>
                     </Card>
                     {confirmedOutput}
@@ -118,20 +114,21 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     inputContainer: {
-        width: 300,
-        maxWidth: '80%',
+        width: '80%',
+        maxWidth: '95%',
+        minWidth: 300,
         alignItems: 'center',
     },
     buttonContainer: {
         flexDirection: 'row',
         width: '100%',
         alignItems: "center",
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         paddingHorizontal: 15,
     },
-    button: {
-        width: 100,
-    },
+    // button: {
+    // width: 100,
+    // },
     input: {
         width: 80,
         textAlign: 'center',

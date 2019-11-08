@@ -3,7 +3,6 @@ import {
     View,
     Text,
     Image,
-    Button,
     Keyboard,
     StyleSheet,
     ScrollView,
@@ -12,8 +11,10 @@ import {
 import TitleText from '../components/TitleText';
 import BodyText from '../components/BodyText';
 import Colors from '../constants/Colors';
+import MyButton from '../components/MyButton';
 
 const GameOver = props => {
+    const { pastGuess } = props;
     return (
         <TouchableWithoutFeedback
             onPress={() => (Keyboard.dismiss())}
@@ -30,17 +31,18 @@ const GameOver = props => {
                             fadeDuration={1000}
                         />
                     </View>
-                    <View style={styles.resultContainer}> 
+                    <View style={styles.resultContainer}>
                         <BodyText
                             style={styles.resultText}
                             numberOfLines={3}
                             ellipsizeMode="tail"
                         >
-                            Your phone needed <Text style={styles.highlight}>{props.rounds}</Text> rounds to guess the number <Text style={styles.highlight}>{props.userChoice}</Text>.
+                            Your phone needed <Text style={styles.highlight}>{pastGuess.length}</Text> rounds to guess the number <Text style={styles.highlight}>{props.userChoice}</Text>.
                         </BodyText>
                     </View>
                     <View style={styles.button}>
-                        <Button
+                        <MyButton
+                            primary
                             title="New Game"
                             onPress={props.onRestart}
                         />
