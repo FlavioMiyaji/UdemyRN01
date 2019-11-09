@@ -3,13 +3,20 @@ import {
   View,
   StatusBar,
   StyleSheet,
+  ScrollView,
   SafeAreaView,
+  KeyboardAvoidingView,
 } from 'react-native';
-import Header from './src/components/Header';
-import StartGameScreen from './src/screens/StartGameScreen';
-import Colors from './src/constants/Colors';
-import GameScreen from './src/screens/GameScreen';
-import GameOver from './src/screens/GameOver';
+import { Colors } from './src/constants';
+import {
+  StartGameScreen,
+  GameScreen,
+  GameOver,
+} from './src/screens';
+import {
+  Header,
+  MyButton,
+} from './src/components';
 
 const App = () => {
   const [] = useState();
@@ -55,10 +62,20 @@ const App = () => {
   return (
     <View style={styles.body}>
       <StatusBar barStyle="light-content" />
+      <Header title="Guess a Number" />
       <SafeAreaView style={styles.safe}>
-        <Header title="Guess a Number" />
-        {content}
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <KeyboardAvoidingView style={{ flex: 1 }}>
+            {content}
+          </KeyboardAvoidingView>
+        </ScrollView>
       </SafeAreaView>
+      <View style={styles.bottom}>
+        <MyButton
+          title="Restart"
+          onPress={restartHandler}
+        />
+      </View>
     </View>
   );
 }
@@ -71,7 +88,13 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: Colors.appBack,
-  }
+
+  },
+  bottom: {
+    backgroundColor: Colors.appBack,
+    borderTopColor: 'black',
+    borderTopWidth: 1,
+  },
 });
 
 export default App;

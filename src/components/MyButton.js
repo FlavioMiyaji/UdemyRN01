@@ -6,18 +6,20 @@ import {
     Dimensions,
     TouchableOpacity,
 } from 'react-native';
-import DefaultStyles from '../constants/DefaultStyles';
-import Colors from '../constants/Colors';
+import {
+    Colors,
+    DefaultStyles,
+} from '../constants';
 
 const MyButton = props => {
-    const { primary } = props;
+    const { primary, wide } = props;
     return (
         <TouchableOpacity
             activeOpacity={0.6}
             onPress={props.onPress}
         >
             <View style={{
-                ...styles.button,
+                ...styles.button({ wide }),
                 backgroundColor: primary ? Colors.primary : Colors.second,
             }}>
                 <Text
@@ -35,18 +37,16 @@ const MyButton = props => {
 };
 
 const styles = StyleSheet.create({
-    button: {
+    button: ({ wide }) => ({
         flexDirection: 'row',
-        paddingVertical: 16,
-        paddingHorizontal: 10,
+        padding: 8,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 100,
-        // width: Dimensions.get('window').width / 3,
-        borderRadius: 10,
-    },
+        borderRadius: 6,
+        margin: 10,
+        minWidth: wide ? '50%' : '40%',
+    }),
     buttonText: {
-        marginLeft: 5,
         textTransform: 'uppercase',
         alignItems: 'center',
         justifyContent: 'center',

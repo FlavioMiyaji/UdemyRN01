@@ -4,16 +4,18 @@ import {
     Alert,
     Keyboard,
     StyleSheet,
-    ScrollView,
+    Dimensions,
     TouchableWithoutFeedback,
 } from 'react-native';
-import Colors from '../constants/Colors';
-import Card from '../components/Card';
-import Input from '../components/Input';
-import NumberContainer from '../components/NumberContainer';
-import BodyText from '../components/BodyText';
-import TitleText from '../components/TitleText';
-import MyButton from '../components/MyButton';
+import { Colors } from '../constants';
+import {
+    Card,
+    Input,
+    BodyText,
+    MyButton,
+    TitleText,
+    NumberContainer,
+} from '../components';
 
 const StartGameScreen = props => {
     const [enteredValue, setEnteredValue] = useState('');
@@ -30,6 +32,7 @@ const StartGameScreen = props => {
                 </NumberContainer>
                 <MyButton
                     primary
+                    wide
                     title="Start Game"
                     onPress={() => (
                         props.onStartGame(selectedNumber)
@@ -49,56 +52,55 @@ const StartGameScreen = props => {
         <TouchableWithoutFeedback
             onPress={() => (Keyboard.dismiss())}
         >
-            <ScrollView>
-                <View style={styles.screen}>
-                    <TitleText style={styles.title}>Start a New Game!</TitleText>
-                    <Card style={styles.inputContainer}>
-                        <BodyText>Select a Number</BodyText>
-                        <Input
-                            style={styles.input}
-                            maxLength={3}
-                            autoCorrect={false}
-                            autoCapitalize="none"
-                            keyboardType="number-pad"
-                            value={enteredValue}
-                            onChangeText={newValue => (
-                                setEnteredValue(newValue.replace(/[^0-9]/g, ''))
-                            )}
+            <View style={styles.screen}>
+                <TitleText style={styles.title}>Start a New Game!</TitleText>
+                <Card style={styles.inputContainer}>
+                    <BodyText>Select a Number</BodyText>
+                    <Input
+                        style={styles.input}
+                        maxLength={3}
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        keyboardType="number-pad"
+                        value={enteredValue}
+                        onChangeText={newValue => (
+                            setEnteredValue(newValue.replace(/[^0-9]/g, ''))
+                        )}
+                    />
+                    <View style={styles.buttonContainer}>
+                        <MyButton
+                            color={Colors.second}
+                            wide={Dimensions.get("window").width > 600}
+                            title="Reset"
+                            onPress={resetInputHandler}
                         />
-                        <View style={styles.buttonContainer}>
-                            <MyButton
-                                color={Colors.second}
-                                title="Reset"
-                                onPress={resetInputHandler}
-                            />
-                            <MyButton
-                                primary
-                                title="Confirm"
-                                onPress={() => {
-                                    const chosenNumber = parseInt(enteredValue);
-                                    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 999) {
-                                        Alert.alert(
-                                            'Invalid value!',
-                                            'Number has to be a number between 1 and 999.',
-                                            [{
-                                                text: 'Okay',
-                                                style: 'destructive',
-                                                onPress: resetInputHandler,
-                                            }],
-                                        );
-                                        return;
-                                    }
-                                    setConfirmed(true);
-                                    setEnteredValue('');
-                                    setSelectedNumber(chosenNumber);
-                                    Keyboard.dismiss();
-                                }}
-                            />
-                        </View>
-                    </Card>
-                    {confirmedOutput}
-                </View>
-            </ScrollView>
+                        <MyButton
+                            primary
+                            title="Confirm"
+                            onPress={() => {
+                                const chosenNumber = parseInt(enteredValue);
+                                if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 999) {
+                                    Alert.alert(
+                                        'Invalid value!',
+                                        'Number has to be a number between 1 and 999.',
+                                        [{
+                                            text: 'Okay',
+                                            style: 'destructive',
+                                            onPress: resetInputHandler,
+                                        }],
+                                    );
+                                    return;
+                                }
+                                setConfirmed(true);
+                                setEnteredValue('');
+                                setSelectedNumber(chosenNumber);
+                                Keyboard.dismiss();
+                            }}
+                        />
+                    </View>
+                </Card>
+                {confirmedOutput}
+            </View>
         </TouchableWithoutFeedback>
     );
 };
@@ -126,9 +128,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         paddingHorizontal: 15,
     },
-    // button: {
-    // width: 100,
-    // },
     input: {
         width: 80,
         textAlign: 'center',
@@ -137,6 +136,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         padding: 20,
         alignItems: 'center',
+        width: '70%',
     }
 });
 

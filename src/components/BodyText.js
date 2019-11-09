@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Text as RNText,
 } from 'react-native';
-import DefaultStyles from '../constants/DefaultStyles';
+import { DefaultStyles } from '../constants';
 
 const BodyText = props => (
     <RNText

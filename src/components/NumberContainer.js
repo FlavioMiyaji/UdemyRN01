@@ -3,7 +3,7 @@ import {
     View,
     StyleSheet,
 } from 'react-native';
-import Colors from '../constants/Colors';
+import { Colors } from '../constants';
 import BodyText from './BodyText';
 
 const NumberContainer = props => {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    number:{
+    number: {
         color: Colors.primary,
         fontSize: 22,
     }

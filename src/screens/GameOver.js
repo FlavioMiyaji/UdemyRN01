@@ -5,13 +5,15 @@ import {
     Image,
     Keyboard,
     StyleSheet,
-    ScrollView,
+    Dimensions,
     TouchableWithoutFeedback,
 } from 'react-native';
-import TitleText from '../components/TitleText';
-import BodyText from '../components/BodyText';
-import Colors from '../constants/Colors';
-import MyButton from '../components/MyButton';
+import {
+    TitleText,
+    BodyText,
+    MyButton,
+} from '../components';
+import { Colors } from '../constants';
 
 const GameOver = props => {
     const { pastGuess } = props;
@@ -19,36 +21,32 @@ const GameOver = props => {
         <TouchableWithoutFeedback
             onPress={() => (Keyboard.dismiss())}
         >
-            <ScrollView>
-                <View style={styles.screen}>
-                    <TitleText style={styles.title}>The game is over!</TitleText>
-                    <View style={styles.imageContainer}>
-                        <Image
-                            source={require('../assets/success.png')}
-                            // source={{ uri: 'https://img.elo7.com.br/product/original/FCE042/quadro-paisagem-quadro-paisagem.jpg' }}
-                            style={styles.image}
-                            resizeMode="cover"
-                            fadeDuration={1000}
-                        />
-                    </View>
-                    <View style={styles.resultContainer}>
-                        <BodyText
-                            style={styles.resultText}
-                            numberOfLines={3}
-                            ellipsizeMode="tail"
-                        >
-                            Your phone needed <Text style={styles.highlight}>{pastGuess.length}</Text> rounds to guess the number <Text style={styles.highlight}>{props.userChoice}</Text>.
-                        </BodyText>
-                    </View>
-                    <View style={styles.button}>
-                        <MyButton
-                            primary
-                            title="New Game"
-                            onPress={props.onRestart}
-                        />
-                    </View>
+            <View style={styles.screen}>
+                <TitleText style={styles.title}>The game is over!</TitleText>
+                <View style={styles.imageContainer}>
+                    <Image
+                        source={require('../assets/success.png')}
+                        // source={{ uri: 'https://img.elo7.com.br/product/original/FCE042/quadro-paisagem-quadro-paisagem.jpg' }}
+                        style={styles.image}
+                        resizeMode="cover"
+                        fadeDuration={1000}
+                    />
                 </View>
-            </ScrollView>
+                <View style={styles.resultContainer}>
+                    <BodyText
+                        style={styles.resultText}
+                        numberOfLines={3}
+                        ellipsizeMode="tail"
+                    >
+                        Your phone needed <Text style={styles.highlight}>{pastGuess.length}</Text> rounds to guess the number <Text style={styles.highlight}>{props.userChoice}</Text>.
+                        </BodyText>
+                </View>
+                <MyButton
+                    primary
+                    title="New Game"
+                    onPress={props.onRestart}
+                />
+            </View>
         </TouchableWithoutFeedback>
     );
 };
@@ -69,24 +67,26 @@ const styles = StyleSheet.create({
         marginVertical: 15,
     },
     imageContainer: {
-        width: 280,
-        height: 280,
-        borderRadius: 140,
+        width: Dimensions.get("window").width * 0.7,
+        height: Dimensions.get("window").width * 0.7,
+        borderRadius: (Dimensions.get("window").width * 0.7) / 2,
         borderWidth: 3,
         borderColor: 'black',
         overflow: 'hidden',
+        marginVertical: Dimensions.get("window").height / 30,
     },
     image: {
         width: '100%',
         height: '100%',
     },
     resultContainer: {
-        marginVertical: 10,
         marginHorizontal: 50,
         justifyContent: 'center',
+        marginVertical: Dimensions.get("window").height / 60,
     },
     resultText: {
         textAlign: 'center',
+        fontSize: Dimensions.get("window").height < 600 ? 16 : 20,
     },
     highlight: {
         color: Colors.primary,
