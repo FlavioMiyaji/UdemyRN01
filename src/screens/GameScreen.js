@@ -1,10 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+    useState,
+    useRef,
+    useEffect,
+} from 'react';
 import {
     View,
+    Text,
     Alert,
     Keyboard,
     StyleSheet,
     Dimensions,
+    TouchableOpacity,
     TouchableWithoutFeedback,
 } from 'react-native';
 import {
@@ -14,6 +20,7 @@ import {
     TitleText,
     NumberContainer,
 } from '../components';
+import { Colors } from '../constants';
 
 const renderListItem = ({ guessNum, guess }) => (
     <Card
@@ -47,6 +54,17 @@ const GameScreen = props => {
     const [pastGuess, setPastGuess] = useState([initialGuess]);
     const minGuess = useRef(0);
     const maxGuess = useRef(1000);
+    const [windowSize, setWindowSize] = useState(Dimensions.get('window'));
+    useEffect(() => {
+        const updateDimensions = () => {
+            setWindowSize(Dimensions.get('window'));
+        };
+
+        Dimensions.addEventListener('change', updateDimensions);
+        return () => {
+            Dimensions.removeEventListener('change', updateDimensions);
+        };
+    });
 
     useEffect(() => {
         if (currentGuess === userChoice) {
@@ -78,35 +96,41 @@ const GameScreen = props => {
         setCurrentGuess(newNum);
         setPastGuess(current => [newNum, ...current]);
     };
-    const numberContent = (
-        <View style={styles.buttonContainer}>
-            <TouchableOpacity
-                onPress={nextGuessHandler.bind(this, 'lower')}
-            >
-                <Text style={{ borderWidth: 1, padding: 15 }}>-</Text>
-            </TouchableOpacity>
+    let numberContent = () => (
+        <View>
             <NumberContainer>{currentGuess}</NumberContainer>
-            <TouchableOpacity
-                onPress={nextGuessHandler.bind(this, 'greater')}
-            >
-                <Text style={{ borderWidth: 1, padding: 15 }}>+</Text>
-            </TouchableOpacity>
+            <Card style={{
+                ...styles.buttonContainer,
+                marginTop: 20,
+            }}>
+                <MyButton
+                    title="Lower"
+                    onPress={nextGuessHandler.bind(this, 'lower')}
+                />
+                <MyButton
+                    title="Greater"
+                    onPress={nextGuessHandler.bind(this, 'greater')}
+                />
+            </Card>
         </View>
     );
-    if (Dimensions.get('window').height > 600) {
-        numberContent = (
-            <View>
+    if (windowSize.height < 400) {
+        numberContent = () => (
+            <View style={{
+                ...styles.buttonContainer,
+                marginTop: 10,
+            }}>
+                <TouchableOpacity
+                    onPress={nextGuessHandler.bind(this, 'lower')}
+                >
+                    <Text style={{ borderWidth: 1, padding: 15 }}>-</Text>
+                </TouchableOpacity>
                 <NumberContainer>{currentGuess}</NumberContainer>
-                <Card style={styles.buttonContainer}>
-                    <MyButton
-                        title="Lower"
-                        onPress={nextGuessHandler.bind(this, 'lower')}
-                    />
-                    <MyButton
-                        title="Greater"
-                        onPress={nextGuessHandler.bind(this, 'greater')}
-                    />
-                </Card>
+                <TouchableOpacity
+                    onPress={nextGuessHandler.bind(this, 'greater')}
+                >
+                    <Text style={{ borderWidth: 1, padding: 15 }}>+</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -118,7 +142,7 @@ const GameScreen = props => {
             <View style={{ flex: 1, alignItems: 'center' }}>
                 <View style={styles.screen}>
                     <TitleText style={styles.title}>Opponent's Guess!</TitleText>
-                    {numberContent}
+                    {numberContent()}
                 </View>
                 {pastGuess.map((guess, index) => renderListItem({
                     guessNum: pastGuess.length - index,
@@ -143,7 +167,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: Dimensions.get('window').height > 600 ? 20 : 10,
         marginVertical: 10,
         width: '80%',
     },

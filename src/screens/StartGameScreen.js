@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+    useState,
+    useEffect,
+} from 'react';
 import {
     View,
     Alert,
@@ -21,6 +24,17 @@ const StartGameScreen = props => {
     const [enteredValue, setEnteredValue] = useState('');
     const [confirmed, setConfirmed] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState();
+    const [windowSize, setWindowSize] = useState(Dimensions.get('window'));
+    useEffect(() => {
+        const updateDimensions = () => {
+            setWindowSize(Dimensions.get('window'));
+        };
+
+        Dimensions.addEventListener('change', updateDimensions);
+        return () => {
+            Dimensions.removeEventListener('change', updateDimensions);
+        };
+    });
 
     let confirmedOutput;
     if (confirmed) {
@@ -70,12 +84,13 @@ const StartGameScreen = props => {
                     <View style={styles.buttonContainer}>
                         <MyButton
                             color={Colors.second}
-                            wide={Dimensions.get("window").width > 600}
+                            wide={windowSize.width > 600}
                             title="Reset"
                             onPress={resetInputHandler}
                         />
                         <MyButton
                             primary
+                            wide={windowSize.width > 600}
                             title="Confirm"
                             onPress={() => {
                                 const chosenNumber = parseInt(enteredValue);

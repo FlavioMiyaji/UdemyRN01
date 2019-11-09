@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
 } from 'react-native';
+import { Colors } from '../constants';
 
 const Card = props => {
     const componentStyle = { ...styles.card, ...props.style };
@@ -18,12 +19,12 @@ const styles = StyleSheet.create({
         // width: 300,
         // maxWidth: '80%',
         // alignItems: 'center',
-        shadowColor: 'grey',
+        shadowColor: Colors.primaryText,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 15,
         shadowOpacity: 0.26,
         elevation: 10,
-        backgroundColor: 'white',
+        backgroundColor: Colors.appBack,
         padding: 10,
         borderRadius: 10,
     },

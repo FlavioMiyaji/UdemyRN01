@@ -1,10 +1,16 @@
+import { theme } from '../../app.json';
+import {
+    Dark,
+    Ligth,
+    Default,
+} from '../theme';
 
-const Colors = {
-    appBack: 'white',
-    primary: '#f7287b',
-    primaryText: 'white',
-    second: '#c717fc',
-    secondText: 'white',
-};
+const Colors = Dark.colors; /*= () => {
+    switch (theme) {
+        case 'dark': return Dark.colors;
+        case 'ligth': return Ligth.colors;
+    }
+    return Default.colors;
+};*/
 
 export default Colors;

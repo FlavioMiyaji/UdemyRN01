@@ -4,6 +4,7 @@ import {
     StyleSheet,
     TextInput as RNTextInput
 } from 'react-native';
+import { Colors } from '../constants';
 
 const Input = props => {
     const componentStyle = { ...styles.input, ...props.style };
@@ -20,7 +21,7 @@ const Input = props => {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        shadowColor: 'grey',
+        shadowColor: Colors.secondText,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 5,
         shadowOpacity: 0.26,
@@ -29,8 +30,10 @@ const styles = StyleSheet.create({
         margin: 10,
         paddingVertical: 10,
         paddingHorizontal: 2,
+        backgroundColor: Colors.second,
     },
     input: {
+        color: Colors.secondText,
         padding: 0,
     },
 });

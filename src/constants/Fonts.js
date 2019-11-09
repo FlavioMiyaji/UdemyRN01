@@ -1,4 +1,3 @@
-
 const Fonts = {
     regular: 'OpenSans-Regular',
     bold: 'OpenSans-Bold',

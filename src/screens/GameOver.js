@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {
+    useState,
+    useEffect,
+} from 'react';
 import {
     View,
     Text,
@@ -17,13 +20,25 @@ import { Colors } from '../constants';
 
 const GameOver = props => {
     const { pastGuess } = props;
+    const [windowSize, setWindowSize] = useState(Dimensions.get('window'));
+    useEffect(() => {
+        const updateDimensions = () => {
+            setWindowSize(Dimensions.get('window'));
+        };
+
+        Dimensions.addEventListener('change', updateDimensions);
+        return () => {
+            Dimensions.removeEventListener('change', updateDimensions);
+        };
+    });
+
     return (
         <TouchableWithoutFeedback
             onPress={() => (Keyboard.dismiss())}
         >
             <View style={styles.screen}>
                 <TitleText style={styles.title}>The game is over!</TitleText>
-                <View style={styles.imageContainer}>
+                <View style={styles.imageContainer({ windowSize })}>
                     <Image
                         source={require('../assets/success.png')}
                         // source={{ uri: 'https://img.elo7.com.br/product/original/FCE042/quadro-paisagem-quadro-paisagem.jpg' }}
@@ -32,9 +47,9 @@ const GameOver = props => {
                         fadeDuration={1000}
                     />
                 </View>
-                <View style={styles.resultContainer}>
+                <View style={styles.resultContainer({ windowSize })}>
                     <BodyText
-                        style={styles.resultText}
+                        style={styles.resultText({ windowSize })}
                         numberOfLines={3}
                         ellipsizeMode="tail"
                     >
@@ -66,28 +81,28 @@ const styles = StyleSheet.create({
         width: 100,
         marginVertical: 15,
     },
-    imageContainer: {
-        width: Dimensions.get("window").width * 0.7,
-        height: Dimensions.get("window").width * 0.7,
-        borderRadius: (Dimensions.get("window").width * 0.7) / 2,
+    imageContainer: ({ windowSize }) => ({
+        width: windowSize.width * 0.7,
+        height: windowSize.width * 0.7,
+        borderRadius: (windowSize.width * 0.7) / 2,
         borderWidth: 3,
         borderColor: 'black',
         overflow: 'hidden',
-        marginVertical: Dimensions.get("window").height / 30,
-    },
+        marginVertical: windowSize.height / 30,
+    }),
     image: {
         width: '100%',
         height: '100%',
     },
-    resultContainer: {
+    resultContainer: ({ windowSize }) => ({
         marginHorizontal: 50,
         justifyContent: 'center',
-        marginVertical: Dimensions.get("window").height / 60,
-    },
-    resultText: {
+        marginVertical: windowSize.height / 60,
+    }),
+    resultText: ({ windowSize }) => ({
         textAlign: 'center',
-        fontSize: Dimensions.get("window").height < 600 ? 16 : 20,
-    },
+        fontSize: windowSize.height < 600 ? 16 : 20,
+    }),
     highlight: {
         color: Colors.primary,
         fontWeight: 'bold',

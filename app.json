@@ -1,5 +1,6 @@
 {
   "name": "UdemyRN01",
   "displayName": "Udemy ReactNative App01",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "theme": "dark"
 }

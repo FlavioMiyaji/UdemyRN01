@@ -88,12 +88,9 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: Colors.appBack,
-
   },
   bottom: {
-    backgroundColor: Colors.appBack,
-    borderTopColor: 'black',
-    borderTopWidth: 1,
+    backgroundColor: Colors.primary,
   },
 });
 
