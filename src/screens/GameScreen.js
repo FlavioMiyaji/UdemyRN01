@@ -176,7 +176,8 @@ const styles = StyleSheet.create({
     },
     listItem: {
         margin: 2,
-        padding: 4,
+        paddingHorizontal: 15,
+        paddingVertical: 10,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

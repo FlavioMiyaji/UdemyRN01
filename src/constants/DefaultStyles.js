@@ -1,17 +1,15 @@
 import { StyleSheet } from 'react-native';
-import {
-    Colors,
-    Fonts,
-} from '.';
+import Fonts from './Fonts';
+import Colors from './Colors';
 
 const DefaultStyles = StyleSheet.create({
     title: {
-        color: Colors.primaryText,
+        color: Colors.onPrimary,
         fontFamily: Fonts.bold,
         fontSize: 22,
     },
     body: {
-        color: Colors.primaryText,
+        color: Colors.onPrimary,
         fontFamily: Fonts.regular,
         fontSize: 16,
     },

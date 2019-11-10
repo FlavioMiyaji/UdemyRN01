@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         height: windowSize.width * 0.7,
         borderRadius: (windowSize.width * 0.7) / 2,
         borderWidth: 3,
-        borderColor: 'black',
+        borderColor: Colors.primary,
         overflow: 'hidden',
         marginVertical: windowSize.height / 30,
     }),

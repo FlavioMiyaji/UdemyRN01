@@ -22,9 +22,11 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: Colors.primary,
         alignItems: 'center',
+        borderBottomColor: Colors.secondary,
+        borderBottomWidth: 1,
     },
     headerTitle: {
-        color: Colors.primaryText,
+        color: Colors.onPrimary,
     },
 });
 

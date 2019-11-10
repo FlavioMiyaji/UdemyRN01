@@ -1,10 +1,18 @@
+import {
+    BlueGray,
+    Teal,
+} from '../palettes/';
+
 const Dark = {
     colors: {
-        appBack: '#506477',
-        primary: '#32ae85',
-        primaryText: '#e4f0fb',
-        second: '#27e8a7',
-        secondText: '#7390aa',
+        background: BlueGray.c800.background,
+        surface: BlueGray.c500.background,
+        primary: Teal.c500.background,
+        secondary: Teal.c100.background,
+        onbackground: BlueGray.c800.foreground,
+        onSurface: BlueGray.c500.foreground,
+        onPrimary: Teal.c500.foreground,
+        onSecondary: Teal.c100.foreground,
     },
 };
 

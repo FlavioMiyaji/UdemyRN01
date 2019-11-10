@@ -83,7 +83,7 @@ const StartGameScreen = props => {
                     />
                     <View style={styles.buttonContainer}>
                         <MyButton
-                            color={Colors.second}
+                            color={Colors.secondary}
                             wide={windowSize.width > 600}
                             title="Reset"
                             onPress={resetInputHandler}
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         width: '100%',
-        alignItems: "center",
+        alignItems: 'center',
         justifyContent: 'space-around',
         paddingHorizontal: 15,
     },

@@ -6,5 +6,5 @@ import Default from './Default';
 export {
     Dark,
     Ligth,
-    Default
+    Default,
 };

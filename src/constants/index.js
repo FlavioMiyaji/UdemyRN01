@@ -1,6 +1,6 @@
-import Fonts from "./Fonts";
-import Colors from "./Colors";
-import DefaultStyles from "./DefaultStyles";
+import Fonts from './Fonts';
+import Colors from './Colors';
+import DefaultStyles from './DefaultStyles';
 
 export {
     Fonts,
