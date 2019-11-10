@@ -15,7 +15,7 @@ import {
     Card,
     Input,
     BodyText,
-    MyButton,
+    Button,
     TitleText,
     NumberContainer,
 } from '../components';
@@ -44,7 +44,7 @@ const StartGameScreen = props => {
                 <NumberContainer>
                     {selectedNumber}
                 </NumberContainer>
-                <MyButton
+                <Button
                     primary
                     wide
                     title="Start Game"
@@ -82,13 +82,13 @@ const StartGameScreen = props => {
                         )}
                     />
                     <View style={styles.buttonContainer}>
-                        <MyButton
+                        <Button
                             color={Colors.primaryVariant}
                             wide={windowSize.width > 600}
                             title="Reset"
                             onPress={resetInputHandler}
                         />
-                        <MyButton
+                        <Button
                             primary
                             wide={windowSize.width > 600}
                             title="Confirm"

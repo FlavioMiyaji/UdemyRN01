@@ -15,7 +15,7 @@ import {
 } from './src/screens';
 import {
   Header,
-  MyButton,
+  Button,
 } from './src/components';
 
 const App = () => {
@@ -60,23 +60,23 @@ const App = () => {
     );
   }
   return (
-    <View style={styles.body}>
+    <SafeAreaView style={styles.body}>
       <StatusBar barStyle="light-content" />
       <Header title="Guess a Number" />
-      <SafeAreaView style={styles.safe}>
+      <View style={styles.safe}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <KeyboardAvoidingView style={{ flex: 1 }}>
             {content}
           </KeyboardAvoidingView>
         </ScrollView>
-      </SafeAreaView>
+      </View>
       <View style={styles.bottom}>
-        <MyButton
+        <Button
           title="Restart"
           onPress={restartHandler}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

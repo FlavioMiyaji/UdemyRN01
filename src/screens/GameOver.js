@@ -14,7 +14,7 @@ import {
 import {
     TitleText,
     BodyText,
-    MyButton,
+    Button,
 } from '../components';
 import { Colors } from '../constants';
 
@@ -56,8 +56,9 @@ const GameOver = props => {
                         Your phone needed <Text style={styles.highlight}>{pastGuess.length}</Text> rounds to guess the number <Text style={styles.highlight}>{props.userChoice}</Text>.
                         </BodyText>
                 </View>
-                <MyButton
+                <Button
                     primary
+                    wide
                     title="New Game"
                     onPress={props.onRestart}
                 />

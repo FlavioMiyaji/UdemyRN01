@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import {
     Card,
-    MyButton,
+    Button,
     BodyText,
     TitleText,
     NumberContainer,
@@ -103,11 +103,11 @@ const GameScreen = props => {
                 ...styles.buttonContainer,
                 marginTop: 20,
             }}>
-                <MyButton
+                <Button
                     title="Lower"
                     onPress={nextGuessHandler.bind(this, 'lower')}
                 />
-                <MyButton
+                <Button
                     title="Greater"
                     onPress={nextGuessHandler.bind(this, 'greater')}
                 />
@@ -122,12 +122,12 @@ const GameScreen = props => {
                 alignItems: 'center',
                 justifyContent: 'space-evenly',
             }}>
-                <MyButton
+                <Button
                     title="Lower"
                     onPress={nextGuessHandler.bind(this, 'lower')}
                 />
                 <NumberContainer>{currentGuess}</NumberContainer>
-                <MyButton
+                <Button
                     title="Greater"
                     onPress={nextGuessHandler.bind(this, 'greater')}
                 />

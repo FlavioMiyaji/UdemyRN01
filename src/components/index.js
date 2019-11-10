@@ -2,7 +2,7 @@ import Card from './Card';
 import Input from './Input';
 import Header from './Header';
 import BodyText from './BodyText';
-import MyButton from './MyButton';
+import Button from './Button';
 import TitleText from './TitleText';
 import NumberContainer from './NumberContainer';
 
@@ -11,7 +11,7 @@ export {
     Input,
     Header,
     BodyText,
-    MyButton,
+    Button,
     TitleText,
     NumberContainer,
 };
