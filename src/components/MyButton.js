@@ -19,13 +19,13 @@ const MyButton = props => {
         >
             <View style={{
                 ...styles.button({ wide }),
-                backgroundColor: primary ? Colors.primary : Colors.secondary,
+                backgroundColor: primary ? Colors.primary : Colors.primaryVariant,
             }}>
                 <Text
                     style={{
                         ...DefaultStyles.buttonText,
                         ...styles.buttonText,
-                        color: primary ? Colors.onPrimary : Colors.onSecondary,
+                        color: primary ? Colors.onPrimary : Colors.onPrimaryVariant,
                     }}
                 >
                     {props.title}

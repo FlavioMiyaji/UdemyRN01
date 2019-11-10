@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: Colors.primary,
         alignItems: 'center',
-        borderBottomColor: Colors.secondary,
+        borderBottomColor: Colors.primaryVariant,
         borderBottomWidth: 1,
     },
     headerTitle: {

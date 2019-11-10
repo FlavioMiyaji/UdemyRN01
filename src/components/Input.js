@@ -21,7 +21,7 @@ const Input = props => {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        shadowColor: Colors.onSecondary,
+        shadowColor: Colors.onPrimaryVariant,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 5,
         shadowOpacity: 0.26,
@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
         margin: 10,
         paddingVertical: 10,
         paddingHorizontal: 2,
-        backgroundColor: Colors.secondary,
+        backgroundColor: Colors.primaryVariant,
     },
     input: {
-        color: Colors.onSecondary,
+        color: Colors.onPrimaryVariant,
         padding: 0,
     },
 });

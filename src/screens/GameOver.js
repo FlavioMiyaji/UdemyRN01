@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginVertical: 10,
+        color: Colors.onBackground,
     },
     button: {
         width: 100,
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
     resultText: ({ windowSize }) => ({
         textAlign: 'center',
         fontSize: windowSize.height < 600 ? 16 : 20,
+        color: Colors.onBackground,
     }),
     highlight: {
         color: Colors.primary,

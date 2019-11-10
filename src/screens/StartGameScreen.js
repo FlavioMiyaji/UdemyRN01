@@ -40,7 +40,7 @@ const StartGameScreen = props => {
     if (confirmed) {
         confirmedOutput = (
             <Card style={styles.summaryContainer}>
-                <BodyText>You selected</BodyText>
+                <BodyText style={{ color: Colors.onSurface }}>You selected</BodyText>
                 <NumberContainer>
                     {selectedNumber}
                 </NumberContainer>
@@ -69,7 +69,7 @@ const StartGameScreen = props => {
             <View style={styles.screen}>
                 <TitleText style={styles.title}>Start a New Game!</TitleText>
                 <Card style={styles.inputContainer}>
-                    <BodyText>Select a Number</BodyText>
+                    <BodyText style={{ color: Colors.onSurface }}>Select a Number</BodyText>
                     <Input
                         style={styles.input}
                         maxLength={3}
@@ -83,7 +83,7 @@ const StartGameScreen = props => {
                     />
                     <View style={styles.buttonContainer}>
                         <MyButton
-                            color={Colors.secondary}
+                            color={Colors.primaryVariant}
                             wide={windowSize.width > 600}
                             title="Reset"
                             onPress={resetInputHandler}
@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginVertical: 10,
+        color: Colors.onBackground,
     },
     inputContainer: {
         width: '80%',

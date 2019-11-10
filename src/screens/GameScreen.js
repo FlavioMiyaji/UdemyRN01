@@ -27,8 +27,8 @@ const renderListItem = ({ guessNum, guess }) => (
         key={guessNum}
         style={styles.listItem}
     >
-        <BodyText>{guessNum}</BodyText>
-        <BodyText>{guess}</BodyText>
+        <BodyText style={{ color: Colors.onSurface }}>{guessNum}</BodyText>
+        <BodyText style={{ color: Colors.onSurface }}>{guess}</BodyText>
     </Card>
 );
 
@@ -119,18 +119,18 @@ const GameScreen = props => {
             <View style={{
                 ...styles.buttonContainer,
                 marginTop: 10,
+                alignItems: 'center',
+                justifyContent: 'space-evenly',
             }}>
-                <TouchableOpacity
+                <MyButton
+                    title="Lower"
                     onPress={nextGuessHandler.bind(this, 'lower')}
-                >
-                    <Text style={{ borderWidth: 1, padding: 15 }}>-</Text>
-                </TouchableOpacity>
+                />
                 <NumberContainer>{currentGuess}</NumberContainer>
-                <TouchableOpacity
+                <MyButton
+                    title="Greater"
                     onPress={nextGuessHandler.bind(this, 'greater')}
-                >
-                    <Text style={{ borderWidth: 1, padding: 15 }}>+</Text>
-                </TouchableOpacity>
+                />
             </View>
         );
     }
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         alignItems: 'center',
         justifyContent: 'center',
+        color: Colors.onBackground,
     },
     buttonContainer: {
         flexDirection: 'row',
